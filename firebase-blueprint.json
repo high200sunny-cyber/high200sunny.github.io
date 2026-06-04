@@ -1,0 +1,105 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile and assigned permissions for Google Authentication accounts",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "Unique Firebase Authentication user UID" },
+        "email": { "type": "string", "description": "Google account email of the user" },
+        "displayName": { "type": "string", "description": "Google display name" },
+        "photoURL": { "type": "string", "description": "Avatar URL from Google Auth" },
+        "role": { "type": "string", "enum": ["visitor", "school", "public", "admin"], "description": "Assigned permission role" },
+        "status": { "type": "string", "enum": ["pending", "approved"], "description": "Activation or approval status" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Registration time" }
+      },
+      "required": ["uid", "email", "role", "status"]
+    },
+    "Group": {
+      "title": "Group",
+      "description": "A tech club minor branch or subteam",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "members": { "type": "array" },
+        "createdBy": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "name", "description", "members"]
+    },
+    "PartListing": {
+      "title": "PartListing",
+      "description": "An electronic component listed on the marketplace",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "groupId": { "type": "string" },
+        "name": { "type": "string" },
+        "category": { "type": "string" },
+        "status": { "type": "string", "enum": ["available", "needed", "exchanged"] },
+        "price": { "type": "number" },
+        "quantity": { "type": "number" },
+        "ownerId": { "type": "string" },
+        "ownerName": { "type": "string" },
+        "description": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "specification": { "type": "string" }
+      },
+      "required": ["id", "groupId", "name", "category", "status", "price", "quantity", "ownerId", "ownerName", "description", "createdAt"]
+    },
+    "Project": {
+      "title": "Project",
+      "description": "A project under development with a Bill of Materials (BOM)",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "groupId": { "type": "string" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "bomItems": { "type": "array" }
+      },
+      "required": ["id", "groupId", "name", "description", "bomItems"]
+    },
+    "Expense": {
+      "title": "Expense",
+      "description": "An expense record for parts sharing ledger",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "groupId": { "type": "string" },
+        "title": { "type": "string" },
+        "amount": { "type": "number" },
+        "paidById": { "type": "string" },
+        "paidByName": { "type": "string" },
+        "splitWithIds": { "type": "array" },
+        "date": { "type": "string" },
+        "category": { "type": "string" }
+      },
+      "required": ["id", "groupId", "title", "amount", "paidById", "paidByName", "splitWithIds", "date", "category"]
+    }
+  },
+  "firestore": {
+    "/users/{uid}": {
+      "schema": "User",
+      "description": "User permission records and approvals indexed by unique auth UID"
+    },
+    "/groups/{groupId}": {
+      "schema": "Group",
+      "description": "Clubs or teams containing member arrays"
+    },
+    "/parts/{partId}": {
+      "schema": "PartListing",
+      "description": "Listed parts available for exchange or purchase"
+    },
+    "/projects/{projectId}": {
+      "schema": "Project",
+      "description": "Group projects and their associated Bill of Materials"
+    },
+    "/expenses/{expenseId}": {
+      "schema": "Expense",
+      "description": "Shared expenses split among group members"
+    }
+  }
+}

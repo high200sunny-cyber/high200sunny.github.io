@@ -1,0 +1,6 @@
+{
+  "name": "零件交換與帳務分攤系統",
+  "description": "簡潔現代的黑色主題零件交換平台。提供零件刊登、BOM缺件計算、群組管理、社團帳務分攤與即時統計儀表板功能。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
