@@ -1,10 +1,8 @@
 {
-  "apiKey": "",
-  "authDomain": "",
-  "projectId": "",
-  "storageBucket": "",
-  "messagingSenderId": "",
-  "appId": "",
-  "measurementId": "",
-  "firestoreDatabaseId": "(default)"
+"projectId": "operating-diode-m07pf",
+"appId": "1:204244570813:web:7d9a2b308c1523f482ddd4"
+"apiKey": "AIzaSyDheHcGH0svb4yPHthNF2RKnxBKvoCwZmg",
+"authDomain": "operating-diode-m07pf.firebaseapp.com",
+"storageBucket": "operating-diode-m07pf.firebasestorage.app",
+"messagingSenderId": "204244570813",
 }
